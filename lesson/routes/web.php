@@ -125,6 +125,7 @@ Route::get('/request-download', function () {
 });
 
 Route::get('/user', [UserController::class, 'index']);
-Route::get('/user/{id}', [UserController::class, 'getUser']);
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/userList', [UserController::class, 'list']);
 
 //Route::get('/user/{id}', [UserController::class, 'getUser'])->middleware('auth');
