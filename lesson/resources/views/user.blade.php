@@ -7,6 +7,8 @@
     <title>Users</title>
 </head>
 <body>
+    {{-- @dd($mockdata); --}}
+
     <h3>{{$id}}</h3>    
     <h3>{{$name}}</h3>
     <h3>{{$email}}</h3>        

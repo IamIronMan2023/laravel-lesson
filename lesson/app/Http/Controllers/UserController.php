@@ -19,8 +19,15 @@ class UserController extends Controller
             "email" => "jdelacruz@email.com"
         );
 
+        // -------------Return paremter using Die and Dump
+        // return view('user', ['mockdata' => $mockdata]);
+
+
+        // -------------Direct array parameter
         // return view('user', $mockdata);
 
+
+        // -------------Return parameter using with
         return view('user')
             ->with('id', $id)
             ->with('name', 'Juan Dela Cruz')
