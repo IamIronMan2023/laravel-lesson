@@ -13,12 +13,18 @@ class UserController extends Controller
 
     public function getUser($id)
     {
-        $data = array(
+        $mockdata = array(
             "id" => $id,
             "name" => "Juan Dela Cruz",
-            "age" => 20,
             "email" => "jdelacruz@email.com"
         );
-        return view('user', $data);
+
+        // return view('user', $mockdata);
+
+        return view('user')
+            ->with('id', $id)
+            ->with('name', 'Juan Dela Cruz')
+            ->with('email', 'jdelacruz@email.com')
+            ->with('mockdata', $mockdata);
     }
 }

@@ -9,7 +9,7 @@
 <body>
     <h3>{{$id}}</h3>    
     <h3>{{$name}}</h3>
-    <h3>{{$age}}</h3>    
     <h3>{{$email}}</h3>        
+    <h3>{{print_r($mockdata)}}</h3>            
 </body>
 </html>
