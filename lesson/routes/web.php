@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -15,11 +16,11 @@ use Illuminate\Http\Request;
 */
 
 //Note: Original code
-/*
+
 Route::get('/', function () {
     return view('welcome');
 });
-*/
+
 
 //----------Routes return string------
 //Notes: You can return string rather than view
@@ -122,3 +123,6 @@ Route::get('/request-download', function () {
 
     return response()->download($path, $name, $header);
 });
+
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'getUser']);
