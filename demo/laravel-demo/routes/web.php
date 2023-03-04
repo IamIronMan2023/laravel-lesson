@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,3 +46,30 @@ Route::any('/any', function () {
 Route::view('/welcome', 'welcome');
 
 Route::redirect('/redirect', '/');
+
+
+// Route::get('/users', function (Request $request) {
+//     dd($request);
+//     return null;
+// });
+
+Route::get('/request-json', function () {
+    return response()->json(['first_name' => 'Juan', 'last_name' => 'Dela Cruz']);
+});
+
+
+Route::get('/change-content-type', function () {
+    return response('Change Content Type', 200)->header('Content-Type', 'text/plain');
+});
+
+Route::get('/request-download', function () {
+    $path = public_path() . '/download-installer.txt';
+    $name = "download-installer.txt";
+    $header = array('Content-Type: application/text-plain');
+
+    return response()->download($path, $name, $header);
+});
+
+
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/{id}', [UserController::class, 'show']);

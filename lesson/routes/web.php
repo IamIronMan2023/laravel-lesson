@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -128,4 +129,4 @@ Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/userList', [UserController::class, 'list']);
 
-//Route::get('/user/{id}', [UserController::class, 'getUser'])->middleware('auth');
+Route::get('/employee/{id}', [EmployeeController::class, 'show']);
