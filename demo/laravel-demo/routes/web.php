@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -73,3 +74,6 @@ Route::get('/request-download', function () {
 
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/{id}', [UserController::class, 'show']);
+
+Route::get('/employees', [EmployeeController::class, 'index']);
+Route::get('/employee/{id}', [EmployeeController::class, 'show']);
