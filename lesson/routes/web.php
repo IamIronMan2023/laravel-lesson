@@ -129,4 +129,5 @@ Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/userList', [UserController::class, 'list']);
 
+Route::get('/employees', [EmployeeController::class, 'index']);
 Route::get('/employee/{id}', [EmployeeController::class, 'show']);
