@@ -130,7 +130,18 @@ Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/userList', [UserController::class, 'list']);
 
 Route::get('/employees', [EmployeeController::class, 'index']);
-Route::get('/employee/{id}', [EmployeeController::class, 'index']);
+Route::get('/employee/{id}', [EmployeeController::class, 'show'])->name('employee.show');
+Route::get('/employee/edit/{id}', [EmployeeController::class, 'show'])->name('employee.edit');
 
 
 Route::post('/store', [EmployeeController::class, 'store']);
+
+/* Common routing names
+    index = Show all data
+    show = Show single data
+    create = Show a form to a new data
+    store = Store a data
+    edit = Show a form to edit data
+    update = update a data
+    destroy = delete a data
+*/
