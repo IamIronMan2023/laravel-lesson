@@ -26,7 +26,6 @@
             <td>{{ $employee->email }}</td>
             <td>
                 <a href="{{ route('employee.show', ['id' => $employee->id]) }}">View</a>
-                <a href="{{ route('employee.edit', ['id' => $employee->id]) }}">Edit</a>
             </td>
             {{-- <td><a href={{ '/employee/' . $employee->id }}>View</a></td> --}}
             {{-- <td><a href="{{ url('employee/' . $employee->id) }}">View</a></td> --}}

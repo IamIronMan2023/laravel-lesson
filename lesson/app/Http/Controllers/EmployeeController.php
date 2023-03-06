@@ -16,11 +16,9 @@ class EmployeeController extends Controller
 
     public function show($id)
     {
-        //---sending single record
-        $data = Employee::where('id', $id)->first();
-        return view('employee.show', $data);
+        $data = Employee::findOrFail($id);
+        return view('employee.show', ['employee' => $data]);
     }
-
 
     public function edit($id)
     {
@@ -57,6 +55,12 @@ class EmployeeController extends Controller
 
         Employee::create($validated);
 
+        return redirect()->route('employee.index');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        Employee::destroy($id);
         return redirect()->route('employee.index');
     }
 }
