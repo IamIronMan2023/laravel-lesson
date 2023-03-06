@@ -16,13 +16,35 @@ class EmployeeController extends Controller
 
     public function show($id)
     {
-        //---sending arrays
-        // $data = Employee::where('id', $id)->get();
-        // return view('employee', ['employees' => $data]);
-
         //---sending single record
         $data = Employee::where('id', $id)->first();
         return view('employee.show', $data);
+    }
+
+
+    public function edit($id)
+    {
+        $data = Employee::findOrFail($id);
+        return view('employee.edit', ['employee' => $data]);
+    }
+
+    public function update(Request $request, Employee $employee)
+    {
+        $validated = $request->validate([
+            "first_name" => ['required'],
+            "last_name" => ['required'],
+            "email" => ['required'],
+        ]);
+
+        $employee->update($validated);
+
+        return redirect()->route('employee.show', ['id' => $employee->id]);
+    }
+
+    public function create()
+    {
+
+        return view('employee.create');
     }
 
     public function store(Request $request)
@@ -34,5 +56,7 @@ class EmployeeController extends Controller
         ]);
 
         Employee::create($validated);
+
+        return redirect()->route('employee.index');
     }
 }

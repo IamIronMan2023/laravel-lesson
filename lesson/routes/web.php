@@ -125,17 +125,6 @@ Route::get('/request-download', function () {
     return response()->download($path, $name, $header);
 });
 
-Route::get('/user', [UserController::class, 'index']);
-Route::get('/user/{id}', [UserController::class, 'show']);
-Route::get('/userList', [UserController::class, 'list']);
-
-Route::get('/employees', [EmployeeController::class, 'index']);
-Route::get('/employee/{id}', [EmployeeController::class, 'show'])->name('employee.show');
-Route::get('/employee/edit/{id}', [EmployeeController::class, 'show'])->name('employee.edit');
-
-
-Route::post('/store', [EmployeeController::class, 'store']);
-
 /* Common routing names
     index = Show all data
     show = Show single data
@@ -145,3 +134,18 @@ Route::post('/store', [EmployeeController::class, 'store']);
     update = update a data
     destroy = delete a data
 */
+
+
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/userList', [UserController::class, 'list']);
+
+
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
+Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show');
+Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');;
+
+Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+Route::put('/employee/edit/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
+Route::delete('/employee/edit/{employee}', [EmployeeController::class, 'destroy'])->name('employee.delete');
