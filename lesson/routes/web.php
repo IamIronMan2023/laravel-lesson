@@ -131,3 +131,6 @@ Route::get('/userList', [UserController::class, 'list']);
 
 Route::get('/employees', [EmployeeController::class, 'index']);
 Route::get('/employee/{id}', [EmployeeController::class, 'index']);
+
+
+Route::post('/store', [EmployeeController::class, 'store']);

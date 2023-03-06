@@ -11,7 +11,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $data = Employee::all();
-        return view('employee', ['employees' => $data]);
+        return view('employee.index', ['employees' => $data]);
     }
 
     public function show($id)
@@ -22,6 +22,17 @@ class EmployeeController extends Controller
 
         //---sending single record
         $data = Employee::where('id', $id)->first();
-        return view('employee', $data);
+        return view('employee.show', $data);
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            "first_name" => ['required'],
+            "last_name" => ['required'],
+            "email" => ['required'],
+        ]);
+
+        Employee::create($validated);
     }
 }
