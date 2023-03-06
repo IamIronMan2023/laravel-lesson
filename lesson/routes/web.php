@@ -148,4 +148,4 @@ Route::post('/employee/store', [EmployeeController::class, 'store'])->name('empl
 
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employee/edit/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
-Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
+Route::delete('/employee/delete/{employee}', [EmployeeController::class, 'destroy'])->name('employee.delete');

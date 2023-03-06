@@ -13,7 +13,7 @@
     <a href="{{ route('employee.index') }}" class="button">Employee List</a>
 </p>
 
-<form action="{{ route('employee.delete', $employee->id) }}" method='POST' id="myform">
+<form action="{{ route('employee.delete', $employee) }}" method='POST' id="myform">
     @method('DELETE')
     @csrf
     <a href="#" onclick="document.getElementById('myform').submit()">Delete</a>
