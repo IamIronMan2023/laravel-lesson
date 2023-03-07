@@ -75,5 +75,8 @@ Route::get('/request-download', function () {
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 
-Route::get('/employees', [EmployeeController::class, 'index']);
-Route::get('/employee/{id}', [EmployeeController::class, 'show']);
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
+Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show');
+
+Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+Route::put('/employee/update/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
