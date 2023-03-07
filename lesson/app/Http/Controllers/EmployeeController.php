@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\IndexHint;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,16 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        //$data = Employee::all();
+        $data = Employee::all();
         //$data = Employee::where('age', '>', 0)->get();
         //$data = Employee::where('first_name', 'LIKE', 'al%')->get();
+        //$data = Employee::select()->where('age', '>', 0)->get();
+        //$data = Employee::select()->where('age', '>', 0)->groupBy('id')->get();
+        //$data = Employee::where('age', '>=', '0')->count();
+
+        $data = DB::select('select * from employees');
+        //dd($data);
+
         return view('employee.index', ['employees' => $data]);
     }
 
