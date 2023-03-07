@@ -4,6 +4,7 @@
 {{-- <h3>Id : {{ $id }}</h3> --}}
 <h3>First Name : {{ $employee->first_name }}</h3>
 <h3>Last Name: {{ $employee->last_name }}</h3>
+<h3>Age: {{ $employee->age }}</h3>
 <h3>Email: {{ $employee->email }}</h3>
 
 <p>

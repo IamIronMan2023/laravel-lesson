@@ -15,9 +15,14 @@
         <input type="text" name="last_name" required="required" value={{ $employee->last_name }} />
     </p>
     <p>
+        <label>Age</label>
+        <input type="number" name="age" required="required" value={{ $employee->age }} />
+    </p>
+    <p>
         <label>Email Address</label>
         <input type="email" name="email" required="required" value={{ $employee->email }} />
     </p>
+
     <input type="submit" value="Update" />
 </form>
 

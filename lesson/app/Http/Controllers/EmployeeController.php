@@ -10,7 +10,9 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $data = Employee::all();
+        //$data = Employee::all();
+        //$data = Employee::where('age', '>', 0)->get();
+        //$data = Employee::where('first_name', 'LIKE', 'al%')->get();
         return view('employee.index', ['employees' => $data]);
     }
 
@@ -32,6 +34,7 @@ class EmployeeController extends Controller
             "first_name" => ['required'],
             "last_name" => ['required'],
             "email" => ['required'],
+            "age" => ['required']
         ]);
 
         $employee->update($validated);
