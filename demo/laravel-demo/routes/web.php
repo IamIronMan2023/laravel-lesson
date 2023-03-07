@@ -80,3 +80,7 @@ Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('em
 
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employee/update/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
+
+Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+Route::delete('/employee/delete/{employee}', [EmployeeController::class, 'destroy'])->name('employee.destroy');

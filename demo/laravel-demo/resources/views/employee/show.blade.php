@@ -20,6 +20,17 @@
     <p>
         <a href="{{ route('employee.edit', $employee->id) }}" class="button">Edit</a>
     </p>
+    <p>
+
+    <form action="{{ route('employee.destroy', $employee) }}" method="POST" id="deleteForm">
+        @method('DELETE')
+        @csrf
+        <a href="#" onclick="document.getElementById('deleteForm').submit()">Delete</a>
+    </form>
+
+    </p>
+
+
 
 </body>
 

@@ -22,7 +22,10 @@ class EmployeeController extends Controller
 
     public function index()
     {
+        //Employee Model
         $data = Employee::all();
+
+
         return view('employee.index', ['employees' => $data]);
     }
 
@@ -49,5 +52,30 @@ class EmployeeController extends Controller
         $employee->update($validated);
 
         return redirect()->route('employee.show', ['id' => $employee->id]);
+    }
+
+    function create()
+    {
+        return view('employee.create');
+    }
+
+    function store(Request $request)
+    {
+        $validated = $request->validate([
+            "first_name" => ['required'],
+            "last_name" => ['required'],
+            "email" => ['required'],
+        ]);
+
+        Employee::create($validated);
+
+        return redirect()->route('employee.index');
+    }
+
+    function destroy(Employee $employee)
+    {
+        $employee->delete();
+
+        return redirect()->route('employee.index');
     }
 }

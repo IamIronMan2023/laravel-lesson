@@ -10,6 +10,7 @@
 
 <body>
 
+    <a href="{{ route('employee.create') }}"> Add New Employee</a>
     <h1>Employee List</h1>
     <table>
         <tr>
