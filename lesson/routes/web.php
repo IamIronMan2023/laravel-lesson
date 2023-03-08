@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -142,14 +143,16 @@ Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/userList', [UserController::class, 'list']);
 
 
-Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index')->middleware('auth');
-Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show')->middleware('auth');
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index')->middleware(['auth', 'check-page:5']);
+Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show')->middleware(['auth', 'check-show-page:5']);
 Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create')->middleware('auth');
 Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');;
 
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employee/edit/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
 Route::delete('/employee/delete/{employee}', [EmployeeController::class, 'destroy'])->name('employee.delete');
+
+Route::get('/restricted', [HomeController::class, 'restricted'])->name('home.restricted');
 
 Auth::routes();
 
