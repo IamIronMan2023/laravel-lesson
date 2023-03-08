@@ -11,15 +11,18 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $data = Employee::all();
+        //$data = Employee::all();
         //$data = Employee::where('age', '>', 0)->get();
         //$data = Employee::where('first_name', 'LIKE', 'al%')->get();
         //$data = Employee::select()->where('age', '>', 0)->get();
         //$data = Employee::select()->where('age', '>', 0)->groupBy('id')->get();
         //$data = Employee::where('age', '>=', '0')->count();
 
-        $data = DB::select('select * from employees');
+        //$data = DB::select('select * from employees');
         //dd($data);
+
+        //---Pagination
+        $data = Employee::paginate(10);
 
         return view('employee.index', ['employees' => $data]);
     }

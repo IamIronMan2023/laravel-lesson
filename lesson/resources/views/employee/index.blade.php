@@ -8,6 +8,7 @@
     }
 </style>
 
+
 <h1>Employee List</h1>
 <table style="width:50%">
     <tr>
@@ -33,5 +34,6 @@
         </tr>
     @endforeach
 </table>
+<div>{{ $employees->links() }}</div>
 
 @include('partials.footer')
