@@ -7,18 +7,20 @@
 <h3>Age: {{ $employee->age }}</h3>
 <h3>Email: {{ $employee->email }}</h3>
 
-<p>
-    <a href="{{ route('employee.edit', ['id' => $employee->id]) }}" class="button">Edit</a>
-</p>
-<p>
-    <a href="{{ route('employee.index') }}" class="button">Employee List</a>
-</p>
+@if (Auth::user())
+    <p>
+        <a href="{{ route('employee.edit', ['id' => $employee->id]) }}" class="button">Edit</a>
+    </p>
 
-<form action="{{ route('employee.delete', $employee) }}" method='POST' id="myform">
-    @method('DELETE')
-    @csrf
-    <a href="#" onclick="document.getElementById('myform').submit()">Delete</a>
-</form>
+    <p>
+        <a href="{{ route('employee.index') }}" class="button">Employee List</a>
+    </p>
 
+    <form action="{{ route('employee.delete', $employee) }}" method='POST' id="myform">
+        @method('DELETE')
+        @csrf
+        <a href="#" onclick="document.getElementById('myform').submit()">Delete</a>
+    </form>
+@endif
 
 @include('partials.footer')

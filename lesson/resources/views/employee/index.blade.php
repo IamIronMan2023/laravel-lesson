@@ -18,7 +18,10 @@
         <th>Action</th>
     </tr>
 
-    <a href="{{ route('employee.create') }}">New</a>
+    @if (Auth::user())
+        <a href="{{ route('employee.create') }}">New</a>
+    @endif
+
 
     @foreach ($employees as $employee)
         <tr>
