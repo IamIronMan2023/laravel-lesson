@@ -142,9 +142,9 @@ Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/userList', [UserController::class, 'list']);
 
 
-Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
-Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show');
-Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index')->middleware('auth');
+Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show')->middleware('auth');
+Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create')->middleware('auth');
 Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');;
 
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
