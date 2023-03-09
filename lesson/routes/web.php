@@ -151,9 +151,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
 });
 
-
-
-
 Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show')->middleware(['auth', 'check-show-page:5']);
 Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');;
 
