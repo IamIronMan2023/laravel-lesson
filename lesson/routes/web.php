@@ -142,10 +142,19 @@ Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/userList', [UserController::class, 'list']);
 
+Route::middleware(['check-page:5'])->group(function () {
+    //Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index')->middleware(['check-page:5']);    
+});
 
-Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index')->middleware(['auth', 'check-page:5']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+});
+
+
+
+
 Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show')->middleware(['auth', 'check-show-page:5']);
-Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create')->middleware('auth');
 Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');;
 
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
