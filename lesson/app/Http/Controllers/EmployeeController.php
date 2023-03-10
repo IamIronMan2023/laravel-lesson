@@ -6,13 +6,17 @@ use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\IndexHint;
 use Illuminate\Http\Request;
+use App\Repositories\EmployeeRepository;
 
 class EmployeeController extends Controller
 {
-    public function __construct()
+    private $employeeRepository;
+
+    public function __construct(EmployeeRepository $employeeRepository)
     {
         //$this->middleware('auth');
         //$this->middleware('auth', ['except' => ['index']]);
+        $this->employeeRepository = $employeeRepository;
     }
 
     public function index()
@@ -28,7 +32,8 @@ class EmployeeController extends Controller
         //dd($data);
 
         //---Pagination
-        $data = Employee::paginate(10);
+        $data = $this->employeeRepository->all();
+
         return view('employee.index', ['employees' => $data]);
     }
 
