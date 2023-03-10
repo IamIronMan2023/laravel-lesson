@@ -152,15 +152,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show')->middleware(['auth', 'check-show-page:5']);
-Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');;
+Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
 
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employee/edit/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
 Route::delete('/employee/delete/{employee}', [EmployeeController::class, 'destroy'])->name('employee.delete');
 
 Route::get('/restricted', [HomeController::class, 'restricted'])->name('home.restricted');
-
-Auth::routes();
 
 Auth::routes();
 

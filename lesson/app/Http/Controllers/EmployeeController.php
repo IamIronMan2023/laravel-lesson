@@ -29,7 +29,6 @@ class EmployeeController extends Controller
 
         //---Pagination
         $data = Employee::paginate(10);
-
         return view('employee.index', ['employees' => $data]);
     }
 
