@@ -1,39 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Employee Profile</title>
-</head>
+@section('content')
+    <div class="container">
+        <h1>Employee Profile</h1>
+        <h3>{{ $employee->id }}</h3>
+        <h3>{{ $employee->first_name }} {{ $employee->last_name }}</h3>
+        <h3>{{ $employee->email }}</h3>
 
-<body>
-    <h1>Employee Profile</h1>
-    <h3>{{ $employee->id }}</h3>
-    <h3>{{ $employee->first_name }} {{ $employee->last_name }}</h3>
-    <h3>{{ $employee->email }}</h3>
-
-    <p>
-        <a href="{{ route('employee.index') }}" class="button">Employee List</a>
-    </p>
-
-    @if (Auth::user())
         <p>
-            <a href="{{ route('employee.edit', $employee->id) }}" class="button">Edit</a>
+            <a href="{{ route('employee.index') }}" class="button">Employee List</a>
         </p>
-        <p>
 
-        <form action="{{ route('employee.destroy', $employee) }}" method="POST" id="deleteForm">
-            @method('DELETE')
-            @csrf
-            <a href="#" onclick="document.getElementById('deleteForm').submit()">Delete</a>
-        </form>
+        @if (Auth::user())
+            <p>
+                <a href="{{ route('employee.edit', $employee->id) }}" class="button">Edit</a>
+            </p>
+            <p>
 
-        </p>
-    @endif
+            <form action="{{ route('employee.destroy', $employee) }}" method="POST" id="deleteForm">
+                @method('DELETE')
+                @csrf
+                <a href="#" onclick="document.getElementById('deleteForm').submit()">Delete</a>
+            </form>
 
-
-</body>
-
-</html>
+            </p>
+        @endif
+    </div>
+@endsection

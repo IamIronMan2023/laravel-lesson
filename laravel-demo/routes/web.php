@@ -92,7 +92,5 @@ Route::delete('/employee/delete/{employee}', [EmployeeController::class, 'destro
 
 Auth::routes();
 
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/restricted', [App\Http\Controllers\HomeController::class, 'restrict'])->name('restricted');
