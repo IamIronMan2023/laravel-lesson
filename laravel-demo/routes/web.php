@@ -73,16 +73,20 @@ Route::get('/request-download', function () {
 });
 
 
+// Route::middleware('auth')->group(function () {
+Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show')->middleware('check-access:5');
+Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+//});
+
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
-Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show');
 
-Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+
 Route::put('/employee/update/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
 
-Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
 Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
 Route::delete('/employee/delete/{employee}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
 
@@ -91,3 +95,4 @@ Auth::routes();
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/restricted', [App\Http\Controllers\HomeController::class, 'restrict'])->name('restricted');

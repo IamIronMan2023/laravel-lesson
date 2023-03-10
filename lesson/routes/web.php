@@ -143,11 +143,11 @@ Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/userList', [UserController::class, 'list']);
 
 Route::middleware(['check-page:5'])->group(function () {
-    //Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index')->middleware(['check-page:5']);    
+    Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index')->middleware(['check-page:5']);
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
+    //Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
     Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
 });
 
