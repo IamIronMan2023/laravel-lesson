@@ -85,10 +85,10 @@ Route::get('/user/{id}', [UserController::class, 'show']);
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
 
 
-Route::put('/employee/update/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
+Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
 
 Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
-Route::delete('/employee/delete/{employee}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
 
 Auth::routes();
 

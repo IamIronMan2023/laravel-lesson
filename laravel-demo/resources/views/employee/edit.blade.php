@@ -10,7 +10,7 @@
 
 <body>
     <h1>Edit Employee</h1>
-    <form action="{{ route('employee.update', $employee) }}" method="POST">
+    <form action="{{ route('employee.update', $employee->id) }}" method="POST">
         @method('PUT')
         @csrf
         <p>

@@ -17,7 +17,7 @@
             </p>
             <p>
 
-            <form action="{{ route('employee.destroy', $employee) }}" method="POST" id="deleteForm">
+            <form action="{{ route('employee.destroy', $employee->id) }}" method="POST" id="deleteForm">
                 @method('DELETE')
                 @csrf
                 <a href="#" onclick="document.getElementById('deleteForm').submit()">Delete</a>

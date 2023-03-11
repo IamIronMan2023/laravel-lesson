@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
+use App\Repositories\EmployeeRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class EmployeeController extends Controller
 {
@@ -20,49 +20,36 @@ class EmployeeController extends Controller
 
     destroy = delete a data
 */
+    private $employeeRepository;
 
-    public function __construct()
+    public function __construct(EmployeeRepositoryInterface $employeeRepository)
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->employeeRepository = $employeeRepository;
     }
 
     public function index()
     {
-        //Employee Model
-        //$data = Employee::all();
-        //$data = Employee::where('age', '>', 0)->get();
-        //$data = Employee::where('first_name', 'LIKE', 'Al%')->get();
-        //$data = Employee::select()->where('age', '>', 0)->groupBy('id')->get();
-        //$data = Employee::select()->where('age', '>=', 0)->count();
-
-        //$data = DB::select('select * from employees');
-        $data = Employee::paginate(10);
+        $data = $this->employeeRepository->all();
         return view('employee.index', ['employees' => $data]);
     }
 
     public function show($id)
     {
-        $data = Employee::findOrFail($id);
+        $data = $this->employeeRepository->findById($id);
         return view('employee.show', ['employee' => $data]);
     }
 
     public function edit($id)
     {
-        $data = Employee::findOrFail($id);
+        $data = $this->employeeRepository->findById($id);
         return view('employee.edit', ['employee' => $data]);
     }
 
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            "first_name" => ['required'],
-            "last_name" => ['required'],
-            "email" => ['required'],
-        ]);
-
-        $employee->update($validated);
-
-        return redirect()->route('employee.show', ['id' => $employee->id]);
+        $this->employeeRepository->update($id);
+        return redirect()->route('employee.show', ['id' => $id]);
     }
 
     function create()
@@ -72,21 +59,13 @@ class EmployeeController extends Controller
 
     function store(Request $request)
     {
-        $validated = $request->validate([
-            "first_name" => ['required'],
-            "last_name" => ['required'],
-            "email" => ['required'],
-        ]);
-
-        Employee::create($validated);
-
+        $this->employeeRepository->store();
         return redirect()->route('employee.index');
     }
 
-    function destroy(Employee $employee)
+    function destroy($id)
     {
-        $employee->delete();
-
+        $this->employeeRepository->delete($id);
         return redirect()->route('employee.index');
     }
 }
