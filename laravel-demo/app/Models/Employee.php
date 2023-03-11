@@ -16,6 +16,7 @@ class Employee extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
+    protected $appends = ['full_name'];
 
     public function fullName(): Attribute
     {
