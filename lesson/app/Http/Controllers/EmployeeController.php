@@ -73,20 +73,15 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            "first_name" => ['required'],
-            "last_name" => ['required'],
-            "email" => ['required'],
-        ]);
-
-        Employee::create($validated);
+        $this->employeeRepository->store();
 
         return redirect()->route('employee.index');
     }
 
-    public function destroy(Request $request, Employee $employee)
+    public function destroy($id)
     {
-        $employee->delete();
+        $this->employeeRepository->destroy($id);
+
         return redirect()->route('employee.index');
     }
 }

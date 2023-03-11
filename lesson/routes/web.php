@@ -156,7 +156,7 @@ Route::post('/employee/store', [EmployeeController::class, 'store'])->name('empl
 
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
 Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
-Route::delete('/employee/delete/{employee}', [EmployeeController::class, 'destroy'])->name('employee.delete');
+Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
 
 Route::get('/restricted', [HomeController::class, 'restricted'])->name('home.restricted');
 

@@ -29,4 +29,20 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $employee = Employee::where('id', $id);
         $employee->update($validated);
     }
+
+    public function store()
+    {
+        $validated = request()->validate([
+            "first_name" => ['required'],
+            "last_name" => ['required'],
+            "email" => ['required'],
+        ]);
+
+        Employee::create($validated);
+    }
+
+    public function destroy($id)
+    {
+        Employee::destroy($id);
+    }
 }
