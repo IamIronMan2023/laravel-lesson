@@ -40,6 +40,7 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $data = Employee::findOrFail($id);
+        //$data->full_name = 'davy yabut';
         return view('employee.show', ['employee' => $data]);
     }
 
