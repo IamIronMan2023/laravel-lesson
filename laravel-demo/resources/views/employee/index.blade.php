@@ -9,16 +9,14 @@
         <h1>Employee List</h1>
         <table class="table">
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Full Name</th>
                 <th>Email</th>
                 <th>Action</th>
             </tr>
 
             @foreach ($employees as $employee)
                 <tr>
-                    <td>{{ $employee->first_name }}</td>
-                    <td>{{ $employee->last_name }}</td>
+                    <td>{{ $employee->full_name }}</td>
                     <td>{{ $employee->email }}</td>
                     <td><a href="{{ route('employee.show', ['id' => $employee->id]) }}">View</a></td>
                 </tr>
