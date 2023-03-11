@@ -6,13 +6,13 @@ use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\IndexHint;
 use Illuminate\Http\Request;
-use App\Repositories\EmployeeRepository;
+use App\Repositories\EmployeeRepositoryInterface;
 
 class EmployeeController extends Controller
 {
     private $employeeRepository;
 
-    public function __construct(EmployeeRepository $employeeRepository)
+    public function __construct(EmployeeRepositoryInterface $employeeRepository)
     {
         //$this->middleware('auth');
         //$this->middleware('auth', ['except' => ['index']]);
@@ -39,29 +39,30 @@ class EmployeeController extends Controller
 
     public function show($id)
     {
-        $data = Employee::findOrFail($id);
-        //$data->full_name = 'davy yabut';
+        $data = $this->employeeRepository->findById($id);
         return view('employee.show', ['employee' => $data]);
     }
 
     public function edit($id)
     {
-        $data = Employee::findOrFail($id);
+        $data = $this->employeeRepository->findById($id);
         return view('employee.edit', ['employee' => $data]);
     }
 
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $employeeId)
     {
-        $validated = $request->validate([
-            "first_name" => ['required'],
-            "last_name" => ['required'],
-            "email" => ['required'],
-            "age" => ['required']
-        ]);
+        // $validated = $request->validate([
+        //     "first_name" => ['required'],
+        //     "last_name" => ['required'],
+        //     "email" => ['required'],
+        //     "age" => ['required']
+        // ]);
 
-        $employee->update($validated);
+        // $employee = Employee::where('id', $employeeId);
+        // $employee->update($validated);
 
-        return redirect()->route('employee.show', ['id' => $employee->id]);
+        $this->employeeRepository->update($employeeId);
+        return redirect()->route('employee.show', ['id' => $employeeId]);
     }
 
     public function create()
