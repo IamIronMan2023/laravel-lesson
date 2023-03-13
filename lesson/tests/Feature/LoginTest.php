@@ -7,18 +7,13 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class EmployeeTest extends TestCase
+class LoginTest extends TestCase
 {
     /**
      * A basic feature test example.
      */
 
     use WithFaker;
-
-    public static function setUpBeforeClass(): void
-    {
-        parent::setUpBeforeClass();
-    }
 
     public function test_register(): void
     {
