@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeTest extends TestCase
 {
@@ -20,10 +22,6 @@ class EmployeeTest extends TestCase
 
     public function test_register(): void
     {
-        global $name;
-        global $email;
-        global $password;
-
         $name = $this->faker->name();
         $email = $this->faker->email();
         $password = 'password123';
@@ -44,14 +42,15 @@ class EmployeeTest extends TestCase
 
     public function test_login(): void
     {
-        global $email;
-        global $password;
+        $user = User::factory()->create([
+            'password' => Hash::make('password123'),
+        ]);
 
         $response = $this->post(
             '/login',
             [
-                'email' => $email,
-                'password' => $password,
+                'email' => 'dyabut@email.com',
+                'password' => 'password123',
             ]
         );
         $response->assertRedirect('/home', 'successfully login');
