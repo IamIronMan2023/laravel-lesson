@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Employee;
+use Illuminate\Http\Request;
 
 interface EmployeeRepositoryInterface
 {

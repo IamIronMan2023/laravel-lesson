@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Employee;
+use Illuminate\Http\Request;
 
 
 class EmployeeRepository implements EmployeeRepositoryInterface
@@ -19,15 +20,15 @@ class EmployeeRepository implements EmployeeRepositoryInterface
 
     public function update($id)
     {
-        $validated = request()->validate([
-            "first_name" => ['required'],
-            "last_name" => ['required'],
-            "email" => ['required'],
-            "age" => ['required']
-        ]);
+        // $validated = request()->validate([
+        //     "first_name" => ['required'],
+        //     "last_name" => ['required'],
+        //     "email" => ['required'],
+        //     "age" => ['required']
+        // ]);
 
         $employee = Employee::where('id', $id);
-        $employee->update($validated);
+        $employee->update(request()->all());
     }
 
     public function store()
