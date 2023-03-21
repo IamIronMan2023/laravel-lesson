@@ -23,13 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Protected Routes
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/employees', [EmployeeApiController::class, 'index']);
     Route::post('/logout', [LoginApiController::class, 'logout']);
+    Route::get('/employees', [EmployeeApiController::class, 'index']);
 });
 
 Route::post('/login', [LoginApiController::class, 'login']);
-
-
 Route::get('/employee/show/{id}', [EmployeeApiController::class, 'show']);
 Route::post('/employee/store', [EmployeeApiController::class, 'store']);
 Route::put('/employee/update/{id}', [EmployeeApiController::class, 'update']);
