@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
+use Illuminate\Database\Query\IndexHint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -89,3 +91,6 @@ Route::get('/', function () {
 //     $header = array('Content-type: application/text-plain');
 //     return response()->download($path, $file_name, $header);
 // });
+
+
+Route::get('/employees', [EmployeeController::class, 'index']);
