@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -30,15 +31,15 @@ class EmployeeController extends Controller
         return view('employee.edit', ['employee' => $employee]);
     }
 
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
-        Employee::create(request()->all());
+        Employee::create($request->all());
         return redirect()->route('employees.index');
     }
 
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeRequest $request, Employee $employee)
     {
-        $employee->update(request()->all());
+        $employee->update($request->all());
         return redirect()->route('employees.show', ['employee' => $employee->id]);
     }
 

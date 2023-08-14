@@ -13,22 +13,32 @@
         @csrf
         <p>
             <label>First Name</label>
-            <input type="text" name="first_name" />
+            <input type="text" required="required" name="first_name" />
         </p>
         <p>
             <label>Last Name</label>
-            <input type="text" name="last_name" />
+            <input type="text" required="required" name="last_name" />
         </p>
         <p>
             <label>Email Address</label>
-            <input type="email" name="email" />
+            <input type="email" required="required" name="email" />
         </p>
         <p>
             <label>Age</label>
-            <input type="number" name="age" />
+            <input type="number" required="required" name="age" />
         </p>
         <input type="submit" value="Save" />
+        <a href="{{url()->previous()}}">Back</a>
     </form>
+
+    @if($errors -> any())
+    <div style="color: red;">
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </div>
+    @endif
+
 
 </body>
 
