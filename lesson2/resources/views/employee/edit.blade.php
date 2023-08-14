@@ -29,12 +29,17 @@
             <label>Email Address</label>
             <input type="email" name="email" required="required" value="{{ $employee->email }}" />
         </p>
+        <p>
+            <label>Gender</label>
+            <select name="gender" value="{{ $employee->gender }}" required focus>
+                <option value="Male" {{$employee->gender == 'Male'? 'selected': ''}}>Male</option>
+                <option value="Female" {{$employee->gender == 'Female'? 'selected': ''}}>Female</option>
+            </select>
+        </p>
 
         <input type="submit" value="Update" />
         <a href="{{url()->previous()}}">Back</a>
     </form>
-
-
 
     @if($errors -> any())
     <div style="color: red;">

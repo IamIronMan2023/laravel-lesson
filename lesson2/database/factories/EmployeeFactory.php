@@ -20,7 +20,8 @@ class EmployeeFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->safeEmail(),
-            'age' => fake()->numberBetween(18, 120)
+            'age' => fake()->numberBetween(18, 120),
+            'gender' => fake()->randomElement(['Male', "Female"])
         ];
     }
 }

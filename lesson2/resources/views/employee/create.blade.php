@@ -27,6 +27,15 @@
             <label>Age</label>
             <input type="number" required="required" name="age" />
         </p>
+        <p>
+            <label>Gender</label>
+            <select name="gender" required focus>
+                <option selected disabled value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </p>
+
         <input type="submit" value="Save" />
         <a href="{{url()->previous()}}">Back</a>
     </form>

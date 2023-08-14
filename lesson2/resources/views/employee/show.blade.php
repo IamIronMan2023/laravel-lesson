@@ -13,6 +13,7 @@
     <h3>Last Name: {{ $employee->last_name }}</h3>
     <h3>Age: {{ $employee->age }}</h3>
     <h3>Email: {{ $employee->email }}</h3>
+    <h3>Gender: {{ $employee->gender }}</h3>
 
     <p>
         <a href="{{ route('employees.edit', ['employee' => $employee->id]) }}" class="button">Edit</a>

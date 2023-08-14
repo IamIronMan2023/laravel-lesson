@@ -25,7 +25,8 @@ class EmployeeRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
-            'age' => 'required|integer|min:0|max:150'
+            'age' => 'required|integer|min:0|max:150',
+            'gender' => 'required'
 
         ];
     }
