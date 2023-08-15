@@ -1,35 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Detail</title>
-</head>
-
-<body>
+@extends('layouts.app')
+@section('content')
+<div class="container">
     <h1>Employee Detail</h1>
-    <h3>First Name : {{ $employee->first_name }}</h3>
-    <h3>Last Name: {{ $employee->last_name }}</h3>
-    <h3>Age: {{ $employee->age }}</h3>
-    <h3>Email: {{ $employee->email }}</h3>
-    <h3>Gender: {{ $employee->gender }}</h3>
 
-    <p>
-        <a href="{{ route('employees.edit', ['employee' => $employee->id]) }}" class="button">Edit</a>
-    </p>
-
-    <p>
-        <a href="{{ route('employees.index') }}" class="button">Employee List</a>
-    </p>
-
-    <form action="{{ route('employees.destroy', $employee->id) }}" method='POST' id="myform">
-        @method('DELETE')
-        @csrf
-        <a href="#" onclick="document.getElementById('myform').submit()">Delete</a>
-    </form>
+    <div class="mb-3">
+        <label class="form-label">First Name : {{ $employee->first_name }}</label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Last Name: {{ $employee->last_name }}</label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Age: {{ $employee->age }}</label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email: {{ $employee->email }}</label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Gender: {{ $employee->gender }}</label>
+    </div>
 
 
-</body>
+    <div>
+        <a class="btn btn-primary" href="{{ route('employees.edit', ['employee' => $employee->id]) }}"
+            class="button">Edit</a>
+        <a class="btn btn-primary" href="{{ route('employees.index') }}" class="button">Employee List</a>
 
-</html>
+        <form action="{{ route('employees.destroy', $employee->id) }}" method='POST' id="myform">
+            @method('DELETE')
+            @csrf
+            <a class="btn btn-primary" href="#" onclick="document.getElementById('myform').submit()">Delete</a>
+        </form>
+
+    </div>
+
+</div>
+@endsection

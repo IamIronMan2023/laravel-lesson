@@ -1,43 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Create</title>
-</head>
-
-<body>
+<div class="container">
     <h1>Employee Create</h1>
     <form action="{{ route('employees.store') }}" method="POST">
         @csrf
-        <p>
-            <label>First Name</label>
-            <input type="text" required="required" name="first_name" />
-        </p>
-        <p>
-            <label>Last Name</label>
-            <input type="text" required="required" name="last_name" />
-        </p>
-        <p>
-            <label>Email Address</label>
-            <input type="email" required="required" name="email" />
-        </p>
-        <p>
-            <label>Age</label>
-            <input type="number" required="required" name="age" />
-        </p>
-        <p>
-            <label>Gender</label>
-            <select name="gender" required focus>
+
+        <div class="mb-3 col-md-4">
+            <label class="form-label">First Name</label>
+            <input class="form-control" type="text" required="required" name="first_name" />
+        </div>
+        <div class="mb-3 col-md-4">
+            <label class="form-label">Last Name</label>
+            <input class="form-control" type="text" required="required" name="last_name" />
+        </div>
+        <div class="mb-3 col-md-4">
+            <label class="form-label">Email Address</label>
+            <input class="form-control" type="email" required="required" name="email" />
+        </div>
+        <div class="mb-3 col-md-4">
+            <label class="form-label">Age</label>
+            <input class="form-control" type="number" required="required" name="age" />
+        </div>
+        <div class="mb-3 col-md-4">
+            <label class="form-label">Gender</label>
+            <select class="form-select" name="gender" required focus>
                 <option selected disabled value="">Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
-        </p>
+        </div>
 
-        <input type="submit" value="Save" />
-        <a href="{{url()->previous()}}">Back</a>
+        <div class="mb-3 col-md-4">
+            <input class="btn btn-primary" type="submit" value="Save" />
+            <a class="btn btn-primary" href="{{url()->previous()}}">Back</a>
+        </div>
     </form>
 
     @if($errors -> any())
@@ -47,8 +44,5 @@
         @endforeach
     </div>
     @endif
-
-
-</body>
-
-</html>
+</div>
+@endsection
