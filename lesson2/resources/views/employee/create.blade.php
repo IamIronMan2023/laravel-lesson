@@ -36,13 +36,7 @@
             <a class="btn btn-primary" href="{{url()->previous()}}">Back</a>
         </div>
     </form>
+    @include('partials.error-list-footer')
 
-    @if($errors -> any())
-    <div style="color: red;">
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </div>
-    @endif
 </div>
 @endsection
