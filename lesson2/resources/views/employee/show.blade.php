@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="container">
     <h1>Employee Detail</h1>
@@ -21,17 +22,36 @@
 
 
     <div>
-        <a class="btn btn-primary" href="{{ route('employees.edit', ['employee' => $employee->id]) }}"
-            class="button">Edit</a>
-        <a class="btn btn-primary" href="{{ route('employees.index') }}" class="button">Employee List</a>
+        <a class="btn btn-primary" href="{{ route('employees.edit', ['employee' => $employee->id]) }}">Edit</a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            Delete
+        </button>
 
-        <form action="{{ route('employees.destroy', $employee->id) }}" method='POST' id="myform">
-            @method('DELETE')
-            @csrf
-            <a class="btn btn-primary" href="#" onclick="document.getElementById('myform').submit()">Delete</a>
-        </form>
-
+        <a class="btn btn-primary" href="{{ route('employees.index') }}">Employee List</a>
     </div>
 
 </div>
+
+<div class="modal" tabindex="-1" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ route('employees.destroy', $employee->id) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Delete employee now?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
