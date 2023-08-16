@@ -10,6 +10,7 @@
             <th>Last Name</th>
             <th>Age</th>
             <th>Email</th>
+            <th>Active</th>
             <th>Action</th>
         </tr>
 
@@ -19,6 +20,7 @@
             <td> {{ $employee->last_name }}</td>
             <td> {{ $employee->age }}</td>
             <td>{{ $employee->email }}</td>
+            <td>{{ $employee->active }}</td>
             <td><a href="{{ route('employees.show', ['employee' => $employee->id]) }}">View</a></td>
         </tr>
         @endforeach

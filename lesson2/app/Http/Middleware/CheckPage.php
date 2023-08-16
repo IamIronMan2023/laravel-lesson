@@ -15,7 +15,7 @@ class CheckPage
      */
     public function handle(Request $request, Closure $next, $employeeId): Response
     {
-        if ($request->route('employee')->id == $employeeId) {
+        if ($request->route('employee')->id == $employeeId or !$request->route('employee')->active) {
             return redirect()->route('home.restricted');
         }
 
