@@ -30,4 +30,13 @@ class EmployeeRequest extends FormRequest
 
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'first_name.required' => "We need you to enter your First Name",
+            'last_name.required' =>  "We need you to enter your Last Name",
+            'age.max' =>  "Age is to high",
+        ];
+    }
 }
