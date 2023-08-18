@@ -41,19 +41,19 @@ class EmployeeController extends Controller
 
     public function store(EmployeeRequest $request)
     {
-        $this->employeeRepository->store($request);
+        $this->employeeRepository->store($request->all());
         return redirect()->route('employees.index');
     }
 
     public function update(EmployeeRequest $request, Employee $employee)
     {
-        $this->employeeRepository->update($request, $employee);
+        $this->employeeRepository->update($request->all(), $employee);
         return redirect()->route('employees.show', ['employee' => $employee->id]);
     }
 
     public function destroy(Employee $employee)
     {
-        $this->employeeRepository->destroy($employee);
+        $this->employeeRepository->destroy($employee->id);
         return redirect()->route('employees.index');
     }
 }

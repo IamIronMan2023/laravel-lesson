@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
 
 class EmployeeRepository implements EmployeeRepositoryInterface
@@ -12,18 +11,18 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         return Employee::paginate(10);
     }
 
-    public function update(EmployeeRequest $employeeRequest, Employee $employee)
+    public function update(array $employeeData, Employee $employee)
     {
-        $employee->update($employeeRequest->all());
+        $employee->update($employeeData);
     }
 
-    public function store(EmployeeRequest $employeeRequest)
+    public function store(array $employeeData)
     {
-        Employee::create($employeeRequest->all());
+        Employee::create($employeeData);
     }
 
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        Employee::destroy($employee->id);
+        Employee::destroy($id);
     }
 }
