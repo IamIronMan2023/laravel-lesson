@@ -4,15 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeRequest;
+use App\Repositories\EmployeeRepositoryInterface;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    private $employeeRepository;
+
+    public function __construct(EmployeeRepositoryInterface $employeeRepository)
+    {
+        $this->employeeRepository = $employeeRepository;
+    }
+
     public function index()
     {
         //$data = Employee::all();
-        $employees = Employee::paginate(10);
+        $employees = $this->employeeRepository->all();
         return view('employee.index', ['employees' => $employees]);
     }
 
@@ -20,7 +28,6 @@ class EmployeeController extends Controller
     {
         return view('employee.show', ['employee' => $employee]);
     }
-
 
     public function create()
     {
@@ -34,19 +41,19 @@ class EmployeeController extends Controller
 
     public function store(EmployeeRequest $request)
     {
-        Employee::create($request->all());
+        $this->employeeRepository->store($request);
         return redirect()->route('employees.index');
     }
 
     public function update(EmployeeRequest $request, Employee $employee)
     {
-        $employee->update($request->all());
+        $this->employeeRepository->update($request, $employee);
         return redirect()->route('employees.show', ['employee' => $employee->id]);
     }
 
     public function destroy(Employee $employee)
     {
-        Employee::destroy($employee->id);
+        $this->employeeRepository->destroy($employee);
         return redirect()->route('employees.index');
     }
 }
