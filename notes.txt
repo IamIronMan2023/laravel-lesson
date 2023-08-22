@@ -1,6 +1,0 @@
-/* folder structure */
-app - contain the MVC codes, contains core codes
-routes - 
-config - 
-database - contains sql script
-public - files accessible to users

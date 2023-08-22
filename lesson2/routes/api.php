@@ -22,12 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticationApiController::class, 'logout']);
-    Route::get('/employees', [EmployeeApiController::class, 'index']);
-
     Route::post('/employees', [EmployeeApiController::class, 'store']);
     Route::get('/employees/{employee}', [EmployeeApiController::class, 'show']);
     Route::patch('/employees/{employee}', [EmployeeApiController::class, 'update']);
     Route::delete('/employees/{employee}', [EmployeeApiController::class, 'destroy']);
 });
 
+Route::get('/employees', [EmployeeApiController::class, 'index']);
 Route::post('/login', [AuthenticationApiController::class, 'login']);
